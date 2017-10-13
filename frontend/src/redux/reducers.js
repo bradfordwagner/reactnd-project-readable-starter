@@ -1,13 +1,11 @@
 import {combineReducers} from 'redux'
-import {categoryReducer} from './reducers/categoryReducer'
+import categories from './reducers/categoryReducer'
 
-function testReducer(state = {}, action = {}) {
+function test(state = {}, action = {}) {
     switch (action.type) {
         default:
             return state
     }
 }
 
-
-
-export default combineReducers({testReducer, categoryReducer})
+export default combineReducers({test, categories})

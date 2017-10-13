@@ -35,15 +35,21 @@ class App extends Component {
                 <p>
                     Talking to the backend yields these categories: <br/>
                 </p>
+                {this.props.categoryNames.map(category => (
+                    <p key={category}>{category}</p>
+                ))}
                 <pre>{this.props.categoryNames}</pre>
             </div>
         );
     }
 }
 
-export function mapStateToProps({categories = {}}) {
+export function mapStateToProps(state, ownProps) {
+    const {categories} = state
+    console.info('mapStateToProps', categories)
+    // debugger
     return {
-        categoryNames: Object.values(categories).map(category => category.name)
+        categoryNames: Object.values(categories).map(cat => cat.path)
     }
 }
 
