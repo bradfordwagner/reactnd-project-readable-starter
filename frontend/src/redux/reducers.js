@@ -1,4 +1,5 @@
 import {combineReducers} from 'redux'
+import {categoryReducer} from './reducers/categoryReducer'
 
 function testReducer(state = {}, action = {}) {
     switch (action.type) {
@@ -7,4 +8,6 @@ function testReducer(state = {}, action = {}) {
     }
 }
 
-export default combineReducers({testReducer})
+
+
+export default combineReducers({testReducer, categoryReducer})

@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {CircularProgress} from "material-ui";
+import * as api from './api'
+import {connect} from 'react-redux'
+import {CategoryActions} from './redux/actions'
 
 class App extends Component {
     constructor(props) {
@@ -10,6 +13,13 @@ class App extends Component {
             backend: 'backend-data'
         }
     }
+
+    setCategories = categories => this.props.dispatch(CategoryActions.setCategories(categories))
+
+    componentDidMount() {
+        api.getAllCategories().then(categories => this.setCategories(categories))
+    }
+
 
     render() {
         return (
@@ -25,9 +35,18 @@ class App extends Component {
                 <p>
                     Talking to the backend yields these categories: <br/>
                 </p>
+                <pre>{this.props.categoryNames}</pre>
             </div>
         );
     }
 }
 
-export default App;
+export function mapStateToProps({categories = {}}) {
+    return {
+        categoryNames: Object.values(categories).map(category => category.name)
+    }
+}
+
+export default connect(
+    mapStateToProps
+)(App)
