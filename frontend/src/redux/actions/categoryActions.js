@@ -1,6 +1,6 @@
 export const SetCategories = "ADD_CATEGORIES"
 
-export function setCategories(categories) {
+export const setCategories = (categories) => {
     return {
         type: SetCategories,
         categories

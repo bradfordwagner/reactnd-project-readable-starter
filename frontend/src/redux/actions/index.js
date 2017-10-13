@@ -1,5 +1,7 @@
-import * as CategoryActions from './categoryActions'
+import {setCategories} from './categoryActions'
 
-export {
-    CategoryActions
+export default function(dispatch) {
+    return {
+        setCategories: (categories) => dispatch(setCategories(categories))
+    }
 }

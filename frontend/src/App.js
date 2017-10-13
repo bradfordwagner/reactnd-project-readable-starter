@@ -4,7 +4,7 @@ import './App.css';
 import {CircularProgress} from "material-ui";
 import * as api from './api'
 import {connect} from 'react-redux'
-import {CategoryActions} from './redux/actions'
+import actions from './redux/actions'
 
 class App extends Component {
     constructor(props) {
@@ -14,12 +14,9 @@ class App extends Component {
         }
     }
 
-    setCategories = categories => this.props.dispatch(CategoryActions.setCategories(categories))
-
     componentDidMount() {
-        api.getAllCategories().then(categories => this.setCategories(categories))
+        api.getAllCategories().then(categories => this.props.setCategories(categories))
     }
-
 
     render() {
         return (
@@ -46,13 +43,12 @@ class App extends Component {
 
 export function mapStateToProps(state, ownProps) {
     const {categories} = state
-    console.info('mapStateToProps', categories)
-    // debugger
     return {
         categoryNames: Object.values(categories).map(cat => cat.path)
     }
 }
 
 export default connect(
-    mapStateToProps
+    mapStateToProps,
+    actions
 )(App)
