@@ -16,7 +16,6 @@ class App extends Component {
 
     componentDidMount() {
         api.getAllCategories().then(categories => this.props.setCategories(categories))
-
         api.getAllPosts().then(results => this.props.addPosts(results))
     }
 
@@ -44,9 +43,9 @@ class App extends Component {
 }
 
 export function mapStateToProps(state, ownProps) {
-    const {categories} = state
+    const {categories: {byId}} = state
     return {
-        categoryNames: Object.values(categories).map(cat => cat.path)
+        categoryNames: Object.values(byId).map(cat => cat.path)
     }
 }
 
