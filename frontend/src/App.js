@@ -16,6 +16,8 @@ class App extends Component {
 
     componentDidMount() {
         api.getAllCategories().then(categories => this.props.setCategories(categories))
+
+        api.getAllPosts().then(results => this.props.addPosts(results))
     }
 
     render() {

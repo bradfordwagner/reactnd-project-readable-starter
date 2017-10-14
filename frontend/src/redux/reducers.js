@@ -1,5 +1,6 @@
 import {combineReducers} from 'redux'
-import categories from './reducers/categoryReducer'
+import categories from './reducers/categories'
+import posts from './reducers/posts'
 
 function test(state = {}, action = {}) {
     switch (action.type) {
@@ -8,4 +9,4 @@ function test(state = {}, action = {}) {
     }
 }
 
-export default combineReducers({test, categories})
+export default combineReducers({test, categories, posts})
