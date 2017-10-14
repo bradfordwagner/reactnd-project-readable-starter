@@ -6,7 +6,7 @@ export default function posts(state = {byId: {}}, action = {}) {
             const {posts} = action
             const {byId} = state
             posts.forEach(post => byId[post.id] = post)
-            return state
+            return {...state, byId}
         default:
             return state
     }
