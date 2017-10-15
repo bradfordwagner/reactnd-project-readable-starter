@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
-import {CircularProgress} from "material-ui";
 import * as api from './api'
 import {connect} from 'react-redux'
 import actions from './redux/actions'
 import Post from "./components/post";
+import './index.css'
+import Navigation from "./components/navigation";
 
 class App extends Component {
     constructor(props) {
@@ -23,12 +23,13 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <h4>categories</h4>
-                {this.props.categoryNames.map(category => (
-                    <p key={category}>{category}</p>
-                ))}
-                <h4>posts</h4>
-                <div className="posts">
+                <Navigation/>
+                <div className="container">
+                    <h4>categories</h4>
+                    {this.props.categoryNames.map(category => (
+                        <p key={category}>{category}</p>
+                    ))}
+                    <h4>posts</h4>
                     {this.props.posts.map(post => (
                         <Post id={post.id} key={post.id}/>
                     ))}
