@@ -6,6 +6,8 @@ import actions from './redux/actions'
 import Post from "./components/post";
 import './index.css'
 import Navigation from "./components/navigation";
+import {Tab, Tabs} from "material-ui";
+import AllPosts from "./components/AllPosts";
 
 class App extends Component {
     constructor(props) {
@@ -24,14 +26,15 @@ class App extends Component {
         return (
             <div className="App">
                 <Navigation/>
+                <Tabs>
+                    <Tab label="All Posts">
+                        <AllPosts/>
+                    </Tab>
+                </Tabs>
                 <div className="container">
                     <h4>categories</h4>
                     {this.props.categoryNames.map(category => (
                         <p key={category}>{category}</p>
-                    ))}
-                    <h4>posts</h4>
-                    {this.props.posts.map(post => (
-                        <Post id={post.id} key={post.id}/>
                     ))}
                 </div>
             </div>

@@ -17,6 +17,7 @@ class Post extends Component {
                     <FlatButton label="Downvote"/>
                     <FlatButton label="Edit"/>
                     <FlatButton label="Delete"/>
+                    <FlatButton label="Details"/>
                 </CardActions>
             </Card>
         )
