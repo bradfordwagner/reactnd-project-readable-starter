@@ -5,6 +5,7 @@ import {CircularProgress} from "material-ui";
 import * as api from './api'
 import {connect} from 'react-redux'
 import actions from './redux/actions'
+import Post from "./components/post";
 
 class App extends Component {
     constructor(props) {
@@ -22,25 +23,16 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <div className="App-header">
-                    <img src={logo} className="App-logo" alt="logo"/>
-                    <h2>Welcome to React</h2>
-                </div>
-                <CircularProgress/>
-                <p className="App-intro">
-                    To get started, edit <code>src/App.js</code> and save to reload.
-                </p>
-                <p>
-                    Talking to the backend yields these categories: <br/>
-                </p>
                 <h4>categories</h4>
                 {this.props.categoryNames.map(category => (
                     <p key={category}>{category}</p>
                 ))}
                 <h4>posts</h4>
-                {this.props.posts.map(post => (
-                    <pre key={post.id}>{JSON.stringify(post, null, 2)}</pre>
-                ))}
+                <div className="posts">
+                    {this.props.posts.map(post => (
+                        <Post id={post.id} key={post.id}/>
+                    ))}
+                </div>
             </div>
         );
     }
