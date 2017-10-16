@@ -1,5 +1,5 @@
-import {setCategories} from './categoryActions'
-import {addPosts} from './postsActions'
+import {setCategories} from './CategoryActions'
+import {addPosts} from './PostAction'
 
 export default function(dispatch) {
     return {

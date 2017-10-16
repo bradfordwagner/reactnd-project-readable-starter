@@ -1,4 +1,4 @@
-import {AddPosts} from "../actions/postsActions";
+import {AddPosts} from "../actions/PostAction";
 
 export default function posts(state = {byId: {}}, action = {}) {
     switch (action.type) {

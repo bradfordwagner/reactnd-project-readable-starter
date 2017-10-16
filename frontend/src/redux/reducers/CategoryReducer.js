@@ -1,4 +1,4 @@
-import {SetCategories} from '../actions/categoryActions'
+import {SetCategories} from '../actions/CategoryActions'
 
 export default function categories(state = {byId: {}}, action = {categories: {}}) {
     switch (action.type) {

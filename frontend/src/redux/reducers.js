@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux'
-import categories from './reducers/categories'
-import posts from './reducers/posts'
+import categories from './reducers/CategoryReducer'
+import posts from './reducers/PostReducer'
 
 function test(state = {}, action = {}) {
     switch (action.type) {
