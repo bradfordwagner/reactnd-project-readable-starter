@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import actions from '../redux/actions'
 import {connect} from "react-redux";
-import Post from './post'
+import Post from './Post'
 import {DESCENDING, Sorter, SorterOption} from "./Sorter";
 
 const DATE_FIELD = "timestamp"
