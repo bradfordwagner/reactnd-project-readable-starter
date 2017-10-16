@@ -7,3 +7,7 @@ body {
 .card-inset {
     padding: .5em .5em .5em 1.5em;
 }
+
+.grid {
+    display: grid;
+}

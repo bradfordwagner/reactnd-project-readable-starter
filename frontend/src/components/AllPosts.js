@@ -13,13 +13,18 @@ class AllPosts extends Component {
     }
 
     render() {
-        console.log(this.state)
         return (
-            <div className="container">
-                <Sorter title={"My Sorter"} options={this.state.sorterOptions}/>
-                {this.props.postIds.map(id => (
-                    <Post id={id} key={id}/>
-                ))}
+            <div className="container" style={{padding: "1em"}}>
+                <div className="columns">
+                    <div className="column is-one-quarter">
+                        <Sorter title={"Sort Posts"} options={this.state.sorterOptions} />
+                    </div>
+                    <div className="column">
+                        {this.props.postIds.map(id => (
+                            <Post id={id} key={id}/>
+                        ))}
+                    </div>
+                </div>
             </div>
         )
     }

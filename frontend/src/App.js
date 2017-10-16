@@ -30,12 +30,6 @@ class App extends Component {
                         <AllPosts/>
                     </Tab>
                 </Tabs>
-                <div className="container">
-                    <h4>categories</h4>
-                    {this.props.categoryNames.map(category => (
-                        <p key={category}>{category}</p>
-                    ))}
-                </div>
             </div>
         );
     }
