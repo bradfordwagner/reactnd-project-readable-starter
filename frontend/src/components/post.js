@@ -9,7 +9,7 @@ class Post extends Component {
             <Card>
                 <CardHeader
                     title={this.props.post.title}
-                    subtitle={this.props.post.author}
+                    subtitle={`${new Date(this.props.post.timestamp).toLocaleString()} by ${this.props.post.author}`}
                 />
                 <CardText>{this.props.post.body}</CardText>
                 <CardActions>

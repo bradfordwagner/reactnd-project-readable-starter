@@ -3,8 +3,8 @@ import {Card, CardHeader, MenuItem, RaisedButton, SelectField} from "material-ui
 import ArrowUp from "../icons/ArrowUp";
 import ArrowDown from "../icons/ArrowDown";
 
-const ASCENDING = "asc"
-const DESCENDING = "desc"
+export const ASCENDING = "asc"
+export const DESCENDING = "desc"
 
 export class Sorter extends Component {
     state = {
@@ -13,8 +13,14 @@ export class Sorter extends Component {
 
     componentDidMount() {
         this.setState((state, props) => {
+            const optionsByName = {}
+            if (props.options) {
+                props.options.forEach(option => optionsByName[option.name] = option)
+            }
+
             return {
-                selectedValue: props.options[0].name ? props.options[0].name : "nothing"
+                selectedOption: props.options[0].name ? props.options[0].name : "nothing",
+                optionsByName
             }
         }, () => this.invokeCallback())
     }
@@ -41,7 +47,7 @@ export class Sorter extends Component {
     }
 
     invokeCallback = () => {
-        const sorterResponse = new SorterResponse(this.state.selectedValue, this.state.orderBy);
+        const sorterResponse = new SorterResponse(this.state.optionsByName[this.state.selectedOption], this.state.orderBy);
         if (this.props.onChange) {
             this.props.onChange(sorterResponse)
         }
@@ -49,7 +55,7 @@ export class Sorter extends Component {
 
     handleChange = (obj, index, selectedValue) => {
         this.setState((state, props) => {
-            return {...state, selectedValue}
+            return {...state, selectedValue: selectedValue}
         }, () => this.invokeCallback())
     }
 
@@ -60,8 +66,9 @@ export class Sorter extends Component {
                 <div className="card-inset container grid">
                     <SelectField
                         floatingLabelText="sort by"
-                        value={this.state.selectedValue}
+                        value={this.state.selectedOption}
                         onChange={this.handleChange}
+
                     >
                         {this.props.options.map((option, index) => (
                             <MenuItem value={option.name} primaryText={option.name} key={option.name}/>
@@ -78,14 +85,15 @@ export class Sorter extends Component {
 }
 
 export class SorterOption {
-    constructor(name) {
+    constructor(name, field) {
         this.name = name
+        this.field = field
     }
 }
 
 export class SorterResponse {
-    constructor(selectedValue, orderBy) {
-        this.selectedValue = selectedValue
+    constructor(selectedOption, orderBy) {
+        this.selectedOption = selectedOption
         this.orderBy = orderBy
     }
 }
