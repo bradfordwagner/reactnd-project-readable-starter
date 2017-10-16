@@ -3,3 +3,7 @@ body {
     padding: 1em;
     font-family: Roboto, sans-serif;
 }
+
+.card-inset {
+    padding: .5em .5em .5em 1.5em;
+}
