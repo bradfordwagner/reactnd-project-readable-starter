@@ -3,7 +3,6 @@ import './App.css';
 import * as api from './api'
 import {connect} from 'react-redux'
 import actions from './redux/actions'
-import Post from "./components/post";
 import './index.css'
 import Navigation from "./components/navigation";
 import {Tab, Tabs} from "material-ui";
