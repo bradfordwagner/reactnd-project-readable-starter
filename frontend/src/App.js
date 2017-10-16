@@ -4,7 +4,7 @@ import * as api from './api'
 import {connect} from 'react-redux'
 import actions from './redux/actions'
 import './index.css'
-import Navigation from "./components/navigation";
+import Navigation from "./components/Navigation";
 import {Tab, Tabs} from "material-ui";
 import AllPosts from "./components/AllPosts";
 
