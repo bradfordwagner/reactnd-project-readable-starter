@@ -11,7 +11,10 @@ class Post extends Component {
                     title={this.props.post.title}
                     subtitle={`${new Date(this.props.post.timestamp).toLocaleString()} by ${this.props.post.author}`}
                 />
-                <CardText>{this.props.post.body} <p>Upvotes: {this.props.post.voteScore}</p></CardText>
+                <CardText>
+                    {this.props.post.body}
+                    <p>Upvotes: {this.props.post.voteScore}</p>
+                </CardText>
                 <CardActions>
                     <FlatButton label="Upvote"/>
                     <FlatButton label="Downvote"/>
