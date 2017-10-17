@@ -2,3 +2,7 @@
 .space-posts {
     margin-bottom: 1em;
 }
+
+.less-padding {
+    padding: 16px !important;
+}

@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 import Post from './Post'
 import {DESCENDING, Sorter, SorterOption} from "./Sorter";
 import "./AllPosts.css"
-import EditPost from "./EditPost";
 
 const DATE_FIELD = "timestamp"
 const UPVOTES_FIELD = "voteScore"
@@ -47,13 +46,18 @@ class AllPosts extends Component {
                         <Sorter title={"Sort Posts"} options={this.state.sorterOptions} onChange={this.onSorterChange}/>
                     </div>
                     <div className="column">
-                        <div className="space-posts">
-                            <EditPost/>
-                        </div>
+                        <section className="section less-padding">
+                            <div className="container">
+                                <h1 className="title">All Posts</h1>
+                                <h2 className="subtitle">
+                                    Browse all of the posts, and have a great time.
+                                </h2>
+                            </div>
+                            <hr/>
+                        </section>
                         {this.getSortedPostIds().map(id => (
                             <div className="space-posts" key={id}>
                                 <Post id={id}/>
-                                <EditPost id={id}/>
                             </div>
                         ))}
                     </div>
