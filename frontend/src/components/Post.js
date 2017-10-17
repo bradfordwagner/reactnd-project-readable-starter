@@ -19,7 +19,6 @@ class Post extends Component {
                 <CardText>
                     {this.props.post.body}
                     <p>Upvotes: {this.props.post.voteScore}</p>
-                    <pre>{JSON.stringify(this.props.post, null, 2)}</pre>
                 </CardText>
                 <CardActions>
                     <FlatButton label="Upvote" onClick={() => this.vote(UP_VOTE)}/>
