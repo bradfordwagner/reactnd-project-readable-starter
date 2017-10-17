@@ -3,14 +3,16 @@ import actions from '../redux/actions'
 import {connect} from "react-redux";
 import Post from './Post'
 import {DESCENDING, Sorter, SorterOption} from "./Sorter";
+import "./AllPosts.css"
 
 const DATE_FIELD = "timestamp"
+const UPVOTES_FIELD = "voteScore"
 
 class AllPosts extends Component {
     state = {
         sorterOptions: [
+            new SorterOption("Upvotes", UPVOTES_FIELD),
             new SorterOption("Date", DATE_FIELD),
-            new SorterOption("Score", "score")
         ],
         orderedPostIds: []
     }
@@ -48,7 +50,9 @@ class AllPosts extends Component {
                     </div>
                     <div className="column">
                         {this.getSortedPostIds().map(id => (
-                            <Post id={id} key={id}/>
+                            <div className="space-posts" key={id}>
+                                <Post id={id}/>
+                            </div>
                         ))}
                     </div>
                 </div>
