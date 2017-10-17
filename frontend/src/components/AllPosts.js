@@ -47,10 +47,13 @@ class AllPosts extends Component {
                         <Sorter title={"Sort Posts"} options={this.state.sorterOptions} onChange={this.onSorterChange}/>
                     </div>
                     <div className="column">
+                        <div className="space-posts">
+                            <EditPost/>
+                        </div>
                         {this.getSortedPostIds().map(id => (
                             <div className="space-posts" key={id}>
                                 <Post id={id}/>
-                                {/*<EditPost id={id}/>*/}
+                                <EditPost id={id}/>
                             </div>
                         ))}
                     </div>
