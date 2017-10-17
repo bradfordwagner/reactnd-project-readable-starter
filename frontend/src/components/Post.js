@@ -2,8 +2,12 @@ import React, {Component} from 'react'
 import {connect} from "react-redux";
 import actions from '../redux/actions'
 import {Card, CardActions, CardHeader, CardText, FlatButton} from "material-ui";
+import {voteOnPost} from '../api'
+import {DOWN_VOTE, UP_VOTE} from "../api/index";
 
 class Post extends Component {
+    vote = (status) => voteOnPost(this.props.post, status).then(post => this.props.updatePost(post))
+
     render() {
         return (
             <Card>
@@ -16,8 +20,8 @@ class Post extends Component {
                     <p>Upvotes: {this.props.post.voteScore}</p>
                 </CardText>
                 <CardActions>
-                    <FlatButton label="Upvote"/>
-                    <FlatButton label="Downvote"/>
+                    <FlatButton label="Upvote" onClick={() => this.vote(UP_VOTE)}/>
+                    <FlatButton label="Downvote" onClick={() => this.vote(DOWN_VOTE)}/>
                     <FlatButton label="Edit"/>
                     <FlatButton label="Delete"/>
                     <FlatButton label="Details"/>
