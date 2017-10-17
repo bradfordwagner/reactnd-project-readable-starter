@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from "react-redux";
-import {Card, CardHeader, TextField} from "material-ui";
-import AutoComplete from 'material-ui/AutoComplete';
+import {Card, CardHeader, RadioButton, RadioButtonGroup, TextField} from "material-ui";
 import UUID from '../util/UUID'
 
 class EditPost extends Component {
@@ -22,14 +21,18 @@ class EditPost extends Component {
         // sets up post for editing if it came from props, however this will not update it if the store changes
         const post = this.props.post;
         if (post) {
-            this.setState((state) => {
-                return {...state, post}
-            })
+            this.setState({...this.state, post})
         }
     }
 
-    updateField = (event, value) => {
-        debugger
+    updateField = (field, value) => {
+        this.setState({
+            ...this.state,
+            post: {
+                ...this.state.post,
+                [field]: value
+            }
+        })
     }
 
     render() {
@@ -40,19 +43,40 @@ class EditPost extends Component {
                 <pre>categories - {JSON.stringify(this.props.categories, null, 2)}</pre>
 
                 <TextField
-                    onChange={this.updateField}
+                    onChange={(event, value) => this.updateField('title', value)}
                     floatingLabelText="Title"
                     value={this.state.post.title}
                 />
                 <TextField
+                    onChange={(event, value) => this.updateField('author', value)}
                     floatingLabelText="Author"
                     value={this.state.post.author}
                 />
 
-                <AutoComplete
-                    floatingLabelText="Category"
-                    filter={AutoComplete.caseInsensitiveFilter}
-                    dataSource={this.props.categories}
+                <TextField
+                    floatingLabelText="Upvotes"
+                    value={this.state.post.voteScore}
+                    disabled={true}
+                />
+
+                <div className="grid">
+                    <p>Category</p>
+                    <RadioButtonGroup name="Category" defaultSelected={this.state.post.category} onChange={(event, value) => this.updateField('category', value)}>
+                        {this.props.categories.map(category => (
+                            <RadioButton key={category}
+                                         value={category}
+                                         label={category}
+                            />
+                        ))}
+                    </RadioButtonGroup>
+                </div>
+
+                <TextField
+                    rows={10}
+                    multiLine={true}
+                    floatingLabelText="Body"
+                    value={this.state.post.body}
+                    onChange={(event, value) => this.updateField('body', value)}
                 />
             </Card>
         )
