@@ -1,6 +1,5 @@
 body {
     margin: 0;
-    padding: 1em;
     font-family: Roboto, sans-serif;
 }
 
@@ -10,4 +9,12 @@ body {
 
 .grid {
     display: grid;
+}
+
+html {
+    overflow-y: hidden;
+}
+
+.column {
+    padding: .5rem !important;
 }

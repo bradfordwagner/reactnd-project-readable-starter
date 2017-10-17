@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import Post from './Post'
 import {DESCENDING, Sorter, SorterOption} from "./Sorter";
 import "./AllPosts.css"
+import {RaisedButton} from "material-ui";
 
 const DATE_FIELD = "timestamp"
 const UPVOTES_FIELD = "voteScore"
@@ -43,10 +44,13 @@ class AllPosts extends Component {
             <div className="container" style={{padding: "1em"}}>
                 <div className="columns">
                     <div className="column is-one-quarter">
-                        <Sorter title={"Sort Posts"} options={this.state.sorterOptions} onChange={this.onSorterChange}/>
+                        <div className="space-posts">
+                            <Sorter title={"Sort Posts"} options={this.state.sorterOptions} onChange={this.onSorterChange}/>
+                        </div>
+                        <RaisedButton label="Add Post"/>
                     </div>
-                    <div className="column">
-                        <section className="section less-padding">
+                    <div className="column" style={{paddingLeft: "0em !important"}}>
+                        <section className="section">
                             <div className="container">
                                 <h1 className="title">All Posts</h1>
                                 <h2 className="subtitle">
