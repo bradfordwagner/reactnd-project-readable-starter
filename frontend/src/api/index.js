@@ -30,3 +30,24 @@ export const voteOnPost = (post, vote) => fetch(`${apiUrl}/posts/${post.id}`, {
 
 
 export const deletePost = (post) => fetch(`${apiUrl}/posts/${post.id}`, {headers, method: 'DELETE'}).then(res => res.json())
+
+export const savePost = (post) => fetch(`${apiUrl}/posts`, {
+    headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify(post)
+})
+    .then(res => res.json())
+
+export const updatePost = (post) => fetch(`${apiUrl}/posts/${post.id}`, {
+    headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+    },
+    method: 'PUT',
+    body: JSON.stringify({title: post.title, body: post.body})
+}).then(res => res.json())
+
+export default {getAllCategories, getAllPosts, voteOnPost, deletePost, savePost, updatePost}

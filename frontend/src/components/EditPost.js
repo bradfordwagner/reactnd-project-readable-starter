@@ -2,20 +2,45 @@ import React, {Component} from 'react'
 import {connect} from "react-redux";
 import {Card, CardActions, CardHeader, RadioButton, RadioButtonGroup, RaisedButton, TextField} from "material-ui";
 import UUID from '../util/UUID'
+import API from '../api'
+import actions from '../redux/actions'
 
 class EditPost extends Component {
     state = {
         post: {
-            author: "unknown",
-            body: "Some body here",
+            author: "",
+            body: "",
             category: "react",
             deleted: false,
             id: UUID(),
             timestamp: Date.now(),
-            title: "Brad is the best",
+            title: "",
             voteScore: 1
         },
         title: "Create Post"
+    }
+
+    isEditing = () => this.props.id !== undefined
+
+    savePostInBackend = () => {
+        console.info('saving / updating post', this.state.post)
+        if (this.isEditing()) {
+            API.updatePost(this.state.post).then(post => {
+                this.props.updatePost(post)
+                this.invokeDialogClose()
+            })
+        } else {
+            API.savePost(this.state.post).then(({deleted, voteScore}) => {
+                this.invokeDialogClose()
+            })
+            this.props.updatePost(this.state.post)
+        }
+    }
+
+    invokeDialogClose = () => {
+        if (this.props.closeDialog) {
+            this.props.closeDialog()
+        }
     }
 
     componentDidMount() {
@@ -37,18 +62,21 @@ class EditPost extends Component {
     }
 
     render() {
+        const isEditing = this.isEditing()
         return (
             <Card>
                 <CardHeader title={this.state.title}/>
                 <div className="card-inset container grid">
                     <TextField
                         onChange={(event, value) => this.updateField('title', value)}
+                        disabled={isEditing}
                         fullWidth={true}
                         floatingLabelText="Title"
                         value={this.state.post.title}
                     />
                     <TextField
                         onChange={(event, value) => this.updateField('author', value)}
+                        disabled={isEditing}
                         floatingLabelText="Author"
                         value={this.state.post.author}
                     />
@@ -60,6 +88,7 @@ class EditPost extends Component {
                                 <RadioButton key={category}
                                              value={category}
                                              label={category}
+                                             disabled={isEditing}
                                 />
                             ))}
                         </RadioButtonGroup>
@@ -75,7 +104,7 @@ class EditPost extends Component {
                     />
                 </div>
                 <CardActions>
-                    <RaisedButton label="Save"/>
+                    <RaisedButton label="Save" onClick={() => this.savePostInBackend()}/>
                 </CardActions>
             </Card>
         )
@@ -91,5 +120,5 @@ function mapStateToProps(state, props) {
 
 export default connect(
     mapStateToProps,
-    null
+    actions
 )(EditPost)

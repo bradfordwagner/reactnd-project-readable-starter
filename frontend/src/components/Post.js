@@ -1,11 +1,24 @@
 import React, {Component} from 'react'
 import {connect} from "react-redux";
 import actions from '../redux/actions'
-import {Card, CardActions, CardHeader, CardText, FlatButton} from "material-ui";
+import {Card, CardActions, CardHeader, CardText, Dialog, FlatButton} from "material-ui";
 import {voteOnPost} from '../api'
 import {deletePost, DOWN_VOTE, UP_VOTE} from "../api/index";
+import EditPost from "./EditPost";
 
 class Post extends Component {
+    state = {
+        open: false
+    }
+
+    handleOpen = () => {
+        this.setState({open: true});
+    }
+
+    handleClose = () => {
+        this.setState({open: false});
+    }
+
     vote = (status) => voteOnPost(this.props.post, status).then(post => this.props.updatePost(post))
     removePost = () => deletePost(this.props.post).then(post => this.props.removePost(post))
 
@@ -23,10 +36,18 @@ class Post extends Component {
                 <CardActions>
                     <FlatButton label="Upvote" onClick={() => this.vote(UP_VOTE)}/>
                     <FlatButton label="Downvote" onClick={() => this.vote(DOWN_VOTE)}/>
-                    <FlatButton label="Edit"/>
+                    <FlatButton label="Edit" onClick={this.handleOpen}/>
                     <FlatButton label="Delete" onClick={this.removePost}/>
                     <FlatButton label="Details"/>
                 </CardActions>
+                <Dialog
+                    modal={false}
+                    open={this.state.open}
+                    onRequestClose={this.handleClose}
+                    bodyStyle={{padding: "0px"}}
+                >
+                    <EditPost id={this.props.id} closeDialog={() => this.handleClose()}/>
+                </Dialog>
             </Card>
         )
     }

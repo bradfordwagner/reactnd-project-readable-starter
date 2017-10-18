@@ -4,7 +4,8 @@ import {connect} from "react-redux";
 import Post from './Post'
 import {DESCENDING, Sorter, SorterOption} from "./Sorter";
 import "./AllPosts.css"
-import {RaisedButton} from "material-ui";
+import {Dialog, RaisedButton} from "material-ui";
+import EditPost from "./EditPost";
 
 const DATE_FIELD = "timestamp"
 const UPVOTES_FIELD = "voteScore"
@@ -15,7 +16,16 @@ class AllPosts extends Component {
             new SorterOption("Upvotes", UPVOTES_FIELD),
             new SorterOption("Date", DATE_FIELD),
         ],
-        orderedPostIds: []
+        orderedPostIds: [],
+        open: false
+    }
+
+    handleOpen = () => {
+        this.setState({open: true});
+    }
+
+    handleClose = () => {
+        this.setState({open: false});
     }
 
     getSortedPostIds = () => {
@@ -47,7 +57,16 @@ class AllPosts extends Component {
                         <div className="space-posts">
                             <Sorter title={"Sort Posts"} options={this.state.sorterOptions} onChange={this.onSorterChange}/>
                         </div>
-                        <RaisedButton label="Add Post"/>
+
+                        <RaisedButton label="Add Post" onClick={this.handleOpen}/>
+                        <Dialog
+                            modal={false}
+                            open={this.state.open}
+                            onRequestClose={this.handleClose}
+                            bodyStyle={{padding: "0px"}}
+                        >
+                            <EditPost closeDialog={() => this.handleClose()}/>
+                        </Dialog>
                     </div>
                     <div className="column" style={{paddingLeft: "0em !important"}}>
                         <section className="section">
