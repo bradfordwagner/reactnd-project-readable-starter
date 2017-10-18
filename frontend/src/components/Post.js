@@ -44,7 +44,7 @@ class Post extends Component {
                     modal={false}
                     open={this.state.open}
                     onRequestClose={this.handleClose}
-                    bodyStyle={{padding: "0px"}}
+                    bodyStyle={{padding: "0px", "overflow-x": "hidden"}}
                 >
                     <EditPost id={this.props.id} closeDialog={() => this.handleClose()}/>
                 </Dialog>

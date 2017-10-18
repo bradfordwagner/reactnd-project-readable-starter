@@ -65,11 +65,17 @@ class EditPost extends Component {
         const isEditing = this.isEditing()
         return (
             <Card>
-                <CardHeader title={this.state.title}/>
-                <div className="card-inset container grid">
+                <section className="section">
+                    <div className="container">
+                        <h2 className="subtitle">
+                            {this.state.title}
+                        </h2>
+                    </div>
+                    <hr/>
+                </section>
+                <div className="card-inset grid">
                     <TextField
                         onChange={(event, value) => this.updateField('title', value)}
-                        disabled={isEditing}
                         fullWidth={true}
                         floatingLabelText="Title"
                         value={this.state.post.title}

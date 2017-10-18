@@ -18,3 +18,8 @@ html {
 .column {
     padding: .5rem !important;
 }
+
+
+.section {
+    padding: 16px !important;
+}

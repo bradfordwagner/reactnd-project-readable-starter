@@ -63,7 +63,7 @@ class AllPosts extends Component {
                             modal={false}
                             open={this.state.open}
                             onRequestClose={this.handleClose}
-                            bodyStyle={{padding: "0px"}}
+                            bodyStyle={{padding: "0px", "overflow-x": "hidden"}}
                         >
                             <EditPost closeDialog={() => this.handleClose()}/>
                         </Dialog>
