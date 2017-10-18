@@ -53,9 +53,9 @@ export class Sorter extends Component {
         }
     }
 
-    handleChange = (obj, index, selectedValue) => {
+    handleChange = (obj, index, selectedOption) => {
         this.setState((state, props) => {
-            return {...state, selectedValue: selectedValue}
+            return {...state, selectedOption: selectedOption}
         }, () => this.invokeCallback())
     }
 
