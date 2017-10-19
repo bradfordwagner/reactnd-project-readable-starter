@@ -5,8 +5,7 @@ import {connect} from 'react-redux'
 import actions from './redux/actions'
 import './index.css'
 import Navigation from "./components/Navigation";
-import {Tab, Tabs} from "material-ui";
-import AllPosts from "./components/AllPosts";
+import TabNavigation from "./components/TabNavigation";
 
 class App extends Component {
     constructor(props) {
@@ -25,11 +24,7 @@ class App extends Component {
         return (
             <div className="App">
                 <Navigation/>
-                <Tabs>
-                    <Tab label="All Posts">
-                        <AllPosts/>
-                    </Tab>
-                </Tabs>
+                <TabNavigation/>
             </div>
         );
     }
