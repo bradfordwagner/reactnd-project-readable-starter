@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from "react-redux";
-import {Card, CardActions, CardHeader, RadioButton, RadioButtonGroup, RaisedButton, TextField} from "material-ui";
+import {Card, CardActions, RadioButton, RadioButtonGroup, RaisedButton, TextField} from "material-ui";
 import UUID from '../util/UUID'
 import API from '../api'
 import actions from '../redux/actions'
