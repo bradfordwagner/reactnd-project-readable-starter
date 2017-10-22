@@ -18,11 +18,11 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
-            <MuiThemeProvider>
+        <MuiThemeProvider>
+            <BrowserRouter>
                 <App/>
-            </MuiThemeProvider>
-        </BrowserRouter>
+            </BrowserRouter>
+        </MuiThemeProvider>
     </Provider>,
     document.getElementById('root')
 );

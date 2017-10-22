@@ -6,6 +6,7 @@ import {DESCENDING, Sorter, SorterOption} from "./Sorter";
 import "./AllPosts.css"
 import {Dialog, RaisedButton} from "material-ui";
 import EditPost from "./EditPost";
+import {withRouter} from "react-router-dom";
 
 const DATE_FIELD = "timestamp"
 const UPVOTES_FIELD = "voteScore"
@@ -97,7 +98,7 @@ function mapStateToProps(state, myProps) {
     }
 }
 
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
     actions
-)(AllPosts)
+)(AllPosts))

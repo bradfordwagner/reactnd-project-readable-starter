@@ -6,6 +6,7 @@ import actions from './redux/actions'
 import './index.css'
 import Navigation from "./components/Navigation";
 import TabNavigation from "./components/TabNavigation";
+import {withRouter} from "react-router-dom";
 
 class App extends Component {
     constructor(props) {
@@ -30,7 +31,7 @@ class App extends Component {
     }
 }
 
-export function mapStateToProps(state, ownProps) {
+function mapStateToProps(state, ownProps) {
     const {categories, posts} = state
     return {
         categoryNames: Object.values(categories.byId).map(cat => cat.path),
@@ -38,7 +39,7 @@ export function mapStateToProps(state, ownProps) {
     }
 }
 
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
     actions
-)(App)
+)(App))
