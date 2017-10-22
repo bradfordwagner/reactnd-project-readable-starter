@@ -50,4 +50,9 @@ export const updatePost = (post) => fetch(`${apiUrl}/posts/${post.id}`, {
     body: JSON.stringify({title: post.title, body: post.body})
 }).then(res => res.json())
 
-export default {getAllCategories, getAllPosts, voteOnPost, deletePost, savePost, updatePost}
+export const getPostsForCategory = (categoryName) => fetch(`${apiUrl}/${categoryName}/posts`, {headers}).then(res => res.json())
+
+export const getCommentsForPost = (post) => fetch(`${apiUrl}/posts/${post.id}/comments`, {headers})
+    .then(res => res.json())
+
+export default {getAllCategories, getAllPosts, voteOnPost, deletePost, savePost, updatePost, getPostsForCategory}

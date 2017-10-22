@@ -7,7 +7,6 @@ import CategoryDetails from "./CategoryDetails";
 
 class TabNavigation extends Component {
     handleCallToRouter = (value) => {
-        console.info('TabNav changed tab', value)
         this.props.history.push(value);
     }
 

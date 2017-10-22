@@ -9,13 +9,6 @@ import TabNavigation from "./components/TabNavigation";
 import {withRouter} from "react-router-dom";
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            backend: 'backend-data'
-        }
-    }
-
     componentDidMount() {
         api.getAllCategories().then(categories => this.props.setCategories(categories))
         api.getAllPosts().then(results => this.props.addPosts(results))
