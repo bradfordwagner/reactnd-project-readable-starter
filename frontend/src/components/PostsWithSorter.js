@@ -61,7 +61,7 @@ class PostsWithSorter extends Component {
     }
 
     render = () => (
-        <div className="container" style={{padding: "1em"}}>
+        <div className="container normal-padding">
             <div className="columns">
                 <div className="column is-one-quarter">
                     <div className="space-posts">
@@ -78,7 +78,7 @@ class PostsWithSorter extends Component {
                         <EditPost closeDialog={() => this.handleClose()}/>
                     </Dialog>
                 </div>
-                <div className="column" style={{paddingLeft: "0em !important"}}>
+                <div className="column left-offset">
                     <section className="section">
                         <div className="container">
                             <h1 className="title">{this.props.title}</h1>

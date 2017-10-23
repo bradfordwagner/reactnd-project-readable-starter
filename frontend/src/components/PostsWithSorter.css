@@ -6,3 +6,11 @@
 .less-padding {
     padding: 16px !important;
 }
+
+.left-offset {
+    padding-left: 0em !important
+}
+
+.normal-padding {
+    padding: 1em;
+}
