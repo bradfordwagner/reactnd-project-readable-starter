@@ -55,7 +55,7 @@ class PostsWithSorter extends Component {
                 {this.props.subtitle}
             </h2>
         } else {
-            return <span/>
+            return ""
         }
     }
 
