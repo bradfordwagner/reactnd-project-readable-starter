@@ -19,7 +19,14 @@ html {
     padding: .5rem !important;
 }
 
-
 .section {
     padding: 16px !important;
+}
+
+.normal-padding {
+    padding: 1em;
+}
+
+.pad-bottom {
+    margin-bottom: 0.5em;
 }

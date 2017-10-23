@@ -4,6 +4,7 @@ import {Tab, Tabs} from "material-ui";
 import AllPosts from "./AllPosts";
 import Categories from './Categories'
 import CategoryDetails from "./CategoryDetails";
+import PostDetails from "./PostDetails";
 
 class TabNavigation extends Component {
     handleCallToRouter = (value) => {
@@ -29,7 +30,8 @@ class TabNavigation extends Component {
                 <Switch>
                     <Route path="/" exact component={AllPosts}/>
                     <Route path="/categories" exact component={Categories}/>
-                    <Route path="/:category" component={CategoryDetails}/>
+                    <Route path="/:category" exact component={CategoryDetails}/>
+                    <Route path="/:category/:postId" component={PostDetails}/>
                 </Switch>
             </div>
         )

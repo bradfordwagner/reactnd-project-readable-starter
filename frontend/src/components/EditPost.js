@@ -23,7 +23,6 @@ class EditPost extends Component {
     isEditing = () => this.props.id !== undefined
 
     savePostInBackend = () => {
-        console.info('saving / updating post', this.state.post)
         if (this.isEditing()) {
             API.updatePost(this.state.post).then(post => {
                 this.props.updatePost(post)

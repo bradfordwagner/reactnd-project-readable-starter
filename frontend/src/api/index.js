@@ -55,4 +55,51 @@ export const getPostsForCategory = (categoryName) => fetch(`${apiUrl}/${category
 export const getCommentsForPost = (post) => fetch(`${apiUrl}/posts/${post.id}/comments`, {headers})
     .then(res => res.json())
 
-export default {getAllCategories, getAllPosts, voteOnPost, deletePost, savePost, updatePost, getPostsForCategory}
+export const getPost = postId => fetch(`${apiUrl}/posts/${postId}`, {headers}).then(res => res.json())
+
+export const addComment = (comment) => fetch(`${apiUrl}/comments`, {
+    headers: {...headers, 'Content-Type': 'application/json'},
+    method: 'POST',
+    body: JSON.stringify({...comment, timestamp: Date.now()})
+}).then(res => res.json())
+
+export const getComment = (commentId) => fetch(`${apiUrl}/comments/${commentId}`, {headers}).then(res => res.json())
+export const editComment = (comment) => fetch(`${apiUrl}/comments/${comment.id}`, {
+    headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+    },
+    method: 'PUT',
+    body: JSON.stringify({timestamp: Date.now(), body: comment.body})
+}).then(res => res.json())
+export const voteOnComment = (comment, vote) => fetch(`${apiUrl}/comments/${comment.id}`, {
+    headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify({option: vote})
+}).then(res => res.json())
+export const deleteComment = (comment) => fetch(`${apiUrl}/comments/${comment.id}`, {
+    headers: {
+        ...headers
+    },
+    method: 'DELETE'
+}).then(res => res.json())
+
+export default {
+    getAllCategories,
+    getAllPosts,
+    voteOnPost,
+    deletePost,
+    savePost,
+    updatePost,
+    getPostsForCategory,
+    getPost,
+    getCommentsForPost,
+    addComment,
+    getComment,
+    editComment,
+    voteOnComment,
+    deleteComment
+}

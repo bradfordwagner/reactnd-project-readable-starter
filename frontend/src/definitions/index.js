@@ -1,3 +1,4 @@
+import uuid from '../util/UUID'
 
 class Category {
     constructor(name, path) {
@@ -6,6 +7,19 @@ class Category {
     }
 }
 
-export {
-    Category
+class Comment {
+    id = uuid()
+    timestamp = Date.now()
+    body = ""
+    author = ""
+    parentId = ""
+    deleted = false
+
+    constructor(body, author, parentId) {
+        this.body = body
+        this.author = author
+        this.parentId = parentId
+    }
 }
+
+export {Category, Comment}

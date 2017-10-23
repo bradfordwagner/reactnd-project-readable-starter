@@ -5,6 +5,7 @@ import {Card, CardActions, CardHeader, CardText, Dialog, RaisedButton} from "mat
 import {voteOnPost} from '../api'
 import {deletePost, DOWN_VOTE, UP_VOTE} from "../api/index";
 import EditPost from "./EditPost";
+import {withRouter} from "react-router-dom";
 
 class Post extends Component {
     state = {
@@ -21,6 +22,7 @@ class Post extends Component {
 
     vote = (status) => voteOnPost(this.props.post, status).then(post => this.props.updatePost(post))
     removePost = () => deletePost(this.props.post).then(post => this.props.removePost(post))
+    navigateToDetails = () => this.props.history.push(`/${this.props.post.category}/${this.props.post.id}`)
 
     render() {
         return (
@@ -38,7 +40,7 @@ class Post extends Component {
                     <RaisedButton label="Downvote" onClick={() => this.vote(DOWN_VOTE)}/>
                     <RaisedButton label="Edit" onClick={this.handleOpen}/>
                     <RaisedButton label="Delete" onClick={this.removePost}/>
-                    <RaisedButton label="Details"/>
+                    <RaisedButton label="Details" onClick={this.navigateToDetails}/>
                 </CardActions>
                 <Dialog
                     modal={false}
@@ -59,7 +61,7 @@ function mapStateToProps(state, myProps) {
     return {...myProps, post}
 }
 
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
     actions
-)(Post)
+)(Post))
