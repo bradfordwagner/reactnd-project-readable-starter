@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from "react-redux";
 import actions from '../redux/actions'
-import {Card, CardActions, CardHeader, CardText, Dialog, FlatButton} from "material-ui";
+import {Card, CardActions, CardHeader, CardText, Dialog, RaisedButton} from "material-ui";
 import {voteOnPost} from '../api'
 import {deletePost, DOWN_VOTE, UP_VOTE} from "../api/index";
 import EditPost from "./EditPost";
@@ -34,11 +34,11 @@ class Post extends Component {
                     <p>Upvotes: {this.props.post.voteScore}</p>
                 </CardText>
                 <CardActions>
-                    <FlatButton label="Upvote" onClick={() => this.vote(UP_VOTE)}/>
-                    <FlatButton label="Downvote" onClick={() => this.vote(DOWN_VOTE)}/>
-                    <FlatButton label="Edit" onClick={this.handleOpen}/>
-                    <FlatButton label="Delete" onClick={this.removePost}/>
-                    <FlatButton label="Details"/>
+                    <RaisedButton label="Upvote" onClick={() => this.vote(UP_VOTE)}/>
+                    <RaisedButton label="Downvote" onClick={() => this.vote(DOWN_VOTE)}/>
+                    <RaisedButton label="Edit" onClick={this.handleOpen}/>
+                    <RaisedButton label="Delete" onClick={this.removePost}/>
+                    <RaisedButton label="Details"/>
                 </CardActions>
                 <Dialog
                     modal={false}
