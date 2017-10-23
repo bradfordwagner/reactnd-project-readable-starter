@@ -6,6 +6,7 @@ import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import EditPost from './EditPost'
 import Post from './Post'
+import "./PostsWithSorter.css"
 
 const DATE_FIELD = "timestamp"
 const UPVOTES_FIELD = "voteScore"
