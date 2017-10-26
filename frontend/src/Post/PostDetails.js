@@ -1,15 +1,16 @@
 import React, {Component} from 'react'
 import {connect} from "react-redux";
-import {withRouter} from "react-router-dom";
+import {Redirect, withRouter} from "react-router-dom";
 import Post from './Post'
 import actions from '../App/actions'
-import {Dialog, RaisedButton} from "material-ui";
+import {CircularProgress, Dialog, RaisedButton} from "material-ui";
 import EditComment from "../Comment/EditComment";
 import Comment from "../Comment/Comment";
 
 class PostDetails extends Component {
     state = {
-        open: false
+        open: false,
+        isLoading: true
     }
 
     handleOpen = () => {
@@ -21,17 +22,40 @@ class PostDetails extends Component {
     }
 
     componentDidMount() {
-        this.props.getPost(this.props.postId)
+        this.props.getPost(this.props.postId).then(() => this.setState({isLoading: false})).catch(() => this.setState({isLoading: false}))
         this.props.loadCommentsForPost(this.props.postId)
     }
 
-    renderPost = () => this.props.post ? <div className="pad-bottom"><Post id={this.props.postId}/></div> : ""
-
     render = () => (
         <div className="container normal-padding">
-            {this.renderPost()}
+            {this.renderPage()}
+        </div>
+    )
+
+    renderPage = () => {
+        return this.state.isLoading
+            ? this.renderLoadingScreen()
+            : this.props.post
+                ? this.renderPostDetails()
+                : this.redirect()
+    }
+
+    redirect = () => (
+        <Redirect to="/"/>
+    )
+
+    renderLoadingScreen = () => (
+        // not sure we really want this since it loads so fast
+        <CircularProgress />
+    )
+
+    renderPostDetails = () => (
+        <div>
+            <div className="pad-bottom slide-down">
+                <Post id={this.props.postId}/>
+            </div>
             <div className="pad-bottom">
-                <section className="section">
+                <section className="section slide-down" style={{'animation-delay': this.calculateAnimationDelay(1)}}>
                     <div className="container">
                         <h2 className="subtitle">
                             Comments
@@ -40,7 +64,7 @@ class PostDetails extends Component {
                     <hr/>
                 </section>
 
-                <div className="space-posts">
+                <div className="space-posts slide-down" style={{'animation-delay': this.calculateAnimationDelay(1)}}>
                     <RaisedButton label="Add" onClick={this.handleOpen}/>
                 </div>
                 <Dialog
@@ -52,14 +76,16 @@ class PostDetails extends Component {
                     <EditComment closeDialog={() => this.handleClose()} parentId={this.props.postId}/>
                 </Dialog>
 
-                {this.props.commentIds.map(id => (
-                    <div key={id} className="space-posts">
+                {this.props.commentIds.map((id, index) => (
+                    <div key={id} className="space-posts slide-down" style={{'animation-delay': this.calculateAnimationDelay(1 + index)}}>
                         <Comment id={id} closeDialog={() => this.handleClose()}/>
                     </div>
                 ))}
             </div>
         </div>
     )
+
+    calculateAnimationDelay = offset => `${100 * offset}ms`
 }
 
 function mapStateToProps(state, myProps) {

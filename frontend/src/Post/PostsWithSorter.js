@@ -63,7 +63,7 @@ class PostsWithSorter extends Component {
     render = () => (
         <div className="container normal-padding">
             <div className="columns">
-                <div className="column is-one-quarter">
+                <div className="column is-one-quarter expand-down">
                     <div className="space-posts">
                         <Sorter title={"Sort Posts"} options={this.state.sorterOptions} onChange={this.onSorterChange}/>
                     </div>
@@ -78,7 +78,7 @@ class PostsWithSorter extends Component {
                         <EditPost closeDialog={() => this.handleClose()}/>
                     </Dialog>
                 </div>
-                <div className="column left-offset">
+                <div className="column left-offset is-two-thirds expand-down" style={{'animation-delay': '100ms'}}>
                     <section className="section">
                         <div className="container">
                             <h1 className="title">{this.props.title}</h1>

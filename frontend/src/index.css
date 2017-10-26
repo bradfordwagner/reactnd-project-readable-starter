@@ -30,3 +30,48 @@ html {
 .pad-bottom {
     margin-bottom: 0.5em;
 }
+
+.finger-pointer {
+    cursor: pointer;
+}
+
+.expand-down {
+    opacity: 0;
+    animation-fill-mode: forwards;
+    animation-duration: 200ms;
+    animation-name: keyframe-expand-down;
+    animation-timing-function: cubic-bezier(0.0, 0.0, 0.2, 1);
+    transform-origin: left top;
+}
+
+.slide-down {
+    opacity: 0;
+    animation-fill-mode: forwards;
+    animation-duration: 200ms;
+    animation-name: keyframe-slide-down;
+    animation-timing-function: cubic-bezier(0.0, 0.0, 0.2, 1);
+    transform-origin: left top;
+}
+
+@keyframes keyframe-expand-down {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes keyframe-slide-down {
+    0% {
+        opacity: 1;
+        transform: translate(0, -100%) scale(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+}

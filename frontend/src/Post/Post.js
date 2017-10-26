@@ -29,6 +29,8 @@ class Post extends Component {
                 <CardHeader
                     title={this.props.post.title}
                     subtitle={`${new Date(this.props.post.timestamp).toLocaleString()} by ${this.props.post.author}`}
+                    onClick={this.navigateToDetails}
+                    className="finger-pointer"
                 />
                 <CardText>
                     {this.props.post.body}
@@ -54,8 +56,7 @@ class Post extends Component {
     }
 }
 
-function mapStateToProps(state, myProps) {
-    const {posts} = state
+function mapStateToProps({posts}, myProps) {
     const post = posts.byId[myProps.id]
     return {...myProps, post}
 }
