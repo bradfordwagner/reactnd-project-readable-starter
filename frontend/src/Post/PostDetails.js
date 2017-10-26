@@ -51,10 +51,14 @@ class PostDetails extends Component {
         <CircularProgress />
     )
 
+    manualRedirect = () => {
+        this.props.history.push('/')
+    }
+
     renderPostDetails = () => (
         <div>
             <div className="pad-bottom slide-down">
-                <Post id={this.props.postId}/>
+                <Post id={this.props.postId} deleteCallback={this.manualRedirect}/>
             </div>
             <div className="pad-bottom">
                 <section className="section slide-down small-section-padding" style={{'animation-delay': this.calculateAnimationDelay(1)}}>

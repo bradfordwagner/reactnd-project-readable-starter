@@ -28,8 +28,14 @@ class Post extends Component {
     }
 
     vote = (status) => this.props.voteOnPost(this.props.post, status)
-    removePost = () => this.props.deletePost(this.props.post)
+    removePost = () => this.props.deletePost(this.props.post).then(() => this.deleteCallback())
     navigateToDetails = () => this.props.history.push(`/${this.props.post.category}/${this.props.post.id}`)
+
+    deleteCallback = () => {
+        if (this.props.deleteCallback) {
+            this.props.deleteCallback()
+        }
+    }
 
     render() {
         return (
