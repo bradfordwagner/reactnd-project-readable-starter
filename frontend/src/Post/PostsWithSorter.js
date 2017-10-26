@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import actions from '../redux/actions'
-import {DESCENDING, Sorter, SorterOption} from "./Sorter";
+import actions from '../App/actions'
+import {DESCENDING, Sorter, SorterOption} from "../Sorting/Sorter";
 import {Dialog, RaisedButton} from "material-ui";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";

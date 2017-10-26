@@ -1,32 +1,24 @@
 import React, {Component} from 'react'
-import actions from '../redux/actions'
+import actions from '../App/actions'
 import {connect} from "react-redux";
 import {Card, CardActions, CardHeader, CardText, Dialog, RaisedButton} from "material-ui";
 import EditComment from "./EditComment";
-import API, {UP_VOTE, DOWN_VOTE} from '../api'
+import {DOWN_VOTE, UP_VOTE} from '../api/index'
 
 class Comment extends Component {
     state = {
         open: false
     }
 
-    handleOpen = () => {
-        this.setState({open: true});
-    }
+    handleOpen = () => this.setState({open: true});
 
-    handleClose = () => {
-        this.setState({open: false});
-    }
+    handleClose = () => this.setState({open: false});
 
-    vote = (upOrDown) => {
-        API.voteOnComment(this.props.comment, upOrDown).then(comment => this.props.updateComment(comment))
-    }
+    vote = (upOrDown) => this.props.voteOnComment(this.props.comment, upOrDown)
 
-    deleteComment = () => {
-        API.deleteComment(this.props.comment).then(comment => this.props.updateComment(comment))
-    }
+    deleteComment = () => this.props.deleteComment(this.props.comment)
 
-    formatDate = () =>  this.props.comment.timestamp ? new Date(this.props.comment.timestamp).toLocaleString() : ""
+    formatDate = () => this.props.comment.timestamp ? new Date(this.props.comment.timestamp).toLocaleString() : ""
 
     render = () => (
         <Card>

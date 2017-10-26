@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from "react-redux";
-import actions from '../redux/actions'
+import actions from '../App/actions'
 import {Card, CardActions, CardHeader, CardText, Dialog, RaisedButton} from "material-ui";
-import {voteOnPost} from '../api'
-import {deletePost, DOWN_VOTE, UP_VOTE} from "../api/index";
+import {DOWN_VOTE, UP_VOTE} from "../api/index";
 import EditPost from "./EditPost";
 import {withRouter} from "react-router-dom";
 
@@ -20,8 +19,8 @@ class Post extends Component {
         this.setState({open: false});
     }
 
-    vote = (status) => voteOnPost(this.props.post, status).then(post => this.props.updatePost(post))
-    removePost = () => deletePost(this.props.post).then(post => this.props.removePost(post))
+    vote = (status) => this.props.voteOnPost(this.props.post, status)
+    removePost = () => this.props.deletePost(this.props.post)
     navigateToDetails = () => this.props.history.push(`/${this.props.post.category}/${this.props.post.id}`)
 
     render() {

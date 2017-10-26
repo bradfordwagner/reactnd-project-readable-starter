@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from "react-redux";
-import {Comment} from '../definitions'
+import {Comment} from '../Definitions/index'
 import {Card, CardActions, RaisedButton, TextField} from "material-ui";
-import API from '../api'
-import actions from '../redux/actions'
+import actions from '../App/actions'
 
 class EditComment extends Component {
     state = {
@@ -30,7 +29,6 @@ class EditComment extends Component {
 
     updateField = (field, value) => {
         this.setState({
-            ...this.state,
             comment: {
                 ...this.state.comment,
                 timestamp: Date.now(),
@@ -40,11 +38,9 @@ class EditComment extends Component {
     }
 
     save = () => {
-        if (this.isNewPost()) {
-            API.addComment(this.state.comment).then(comment => this.props.updateComment(comment))
-        } else {
-            API.editComment(this.state.comment).then(comment => this.props.updateComment(comment))
-        }
+        this.isNewPost()
+            ? this.props.addComment(this.state.comment)
+            : this.props.editComment(this.state.comment)
 
         if (this.props.closeDialog) {
             this.props.closeDialog()

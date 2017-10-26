@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import {Route, Switch, withRouter} from "react-router-dom";
 import {Tab, Tabs} from "material-ui";
-import AllPosts from "./AllPosts";
-import Categories from './Categories'
-import CategoryDetails from "./CategoryDetails";
-import PostDetails from "./PostDetails";
+import AllPosts from "../Post/AllPosts";
+import Categories from '../Category/Categories'
+import CategoryDetails from "../Category/CategoryDetails";
+import PostDetails from "../Post/PostDetails";
 
 class TabNavigation extends Component {
     handleCallToRouter = (value) => {

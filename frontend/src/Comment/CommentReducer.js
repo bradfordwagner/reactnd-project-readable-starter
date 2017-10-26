@@ -1,4 +1,5 @@
-import {UpdateComment, AddComments} from '../actions/CommentActions'
+
+import {AddComments, UpdateComment} from "../App/ActionTypes";
 
 export default function comments(state = {byId: {}}, action = {}) {
     const {byId} = state

@@ -1,14 +1,13 @@
 import React, {Component} from 'react'
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
-import API from '../api'
-import actions from '../redux/actions'
-import PostsWithSorter from "./PostsWithSorter";
+import actions from '../App/actions'
+import PostsWithSorter from "../Post/PostsWithSorter";
 
 class CategoryDetails extends Component {
     componentDidMount() {
         if (this.props.categoryName) {
-            API.getPostsForCategory(this.props.categoryName).then(posts => this.props.addPosts(posts))
+            this.props.loadPostsForCategory(this.props.categoryName)
         }
     }
 

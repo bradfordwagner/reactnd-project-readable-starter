@@ -2,8 +2,7 @@ import React, {Component} from 'react'
 import {connect} from "react-redux";
 import {Card, CardActions, RadioButton, RadioButtonGroup, RaisedButton, TextField} from "material-ui";
 import UUID from '../util/UUID'
-import API from '../api'
-import actions from '../redux/actions'
+import actions from '../App/actions'
 
 class EditPost extends Component {
     state = {
@@ -23,17 +22,10 @@ class EditPost extends Component {
     isEditing = () => this.props.id !== undefined
 
     savePostInBackend = () => {
-        if (this.isEditing()) {
-            API.updatePost(this.state.post).then(post => {
-                this.props.updatePost(post)
-                this.invokeDialogClose()
-            })
-        } else {
-            API.savePost(this.state.post).then(({deleted, voteScore}) => {
-                this.invokeDialogClose()
-            })
-            this.props.updatePost(this.state.post)
-        }
+        const promise = this.isEditing()
+            ? this.props.updatePost(this.state.post)
+            : this.props.saveNewPost(this.state.post)
+        promise.then(() => this.invokeDialogClose())
     }
 
     invokeDialogClose = () => {
@@ -46,13 +38,12 @@ class EditPost extends Component {
         // sets up post for editing if it came from props, however this will not update it if the store changes
         const post = this.props.post;
         if (post) {
-            this.setState({...this.state, post, title: "Edit Post"})
+            this.setState({post, title: "Edit Post"})
         }
     }
 
     updateField = (field, value) => {
         this.setState({
-            ...this.state,
             post: {
                 ...this.state.post,
                 [field]: value
@@ -116,11 +107,9 @@ class EditPost extends Component {
     }
 }
 
-function mapStateToProps(state, props) {
-    const {id} = props
-    const {posts, categories} = state
+function mapStateToProps({posts, categories}, {id}) {
     const post = posts.byId[id]
-    return {post, categories: Object.values(categories.byId).map(category => category.name)}
+    return {post, categories: categories.names}
 }
 
 export default connect(

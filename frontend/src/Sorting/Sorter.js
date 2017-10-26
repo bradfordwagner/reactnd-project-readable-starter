@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Card, CardHeader, MenuItem, RaisedButton, SelectField} from "material-ui";
-import ArrowUp from "../icons/ArrowUp";
-import ArrowDown from "../icons/ArrowDown";
+import ArrowUp from "../Icons/ArrowUp";
+import ArrowDown from "../Icons/ArrowDown";
 
 export const ASCENDING = "asc"
 export const DESCENDING = "desc"

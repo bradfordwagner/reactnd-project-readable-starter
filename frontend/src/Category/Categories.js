@@ -18,10 +18,9 @@ class Categories extends Component {
     )
 }
 
-function mapStateToProps(state, myProps) {
-    const {categories} = state
+function mapStateToProps({categories}, myProps) {
     return {
-        categoryNames: Object.values(categories.byId).map(cat => cat.name)
+        categoryNames: categories.names
     }
 }
 

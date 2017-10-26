@@ -1,19 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './App/App';
 import registerServiceWorker from './registerServiceWorker';
-import {createStore} from 'redux'
-import reducer from './redux/reducers'
+import {applyMiddleware, compose, createStore} from 'redux'
+import reducer from './App/reducers'
 import {Provider} from 'react-redux';
 import {MuiThemeProvider} from "material-ui";
-
+import thunk from 'redux-thunk'
 import 'bulma/css/bulma.css'
 import {BrowserRouter} from "react-router-dom";
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
 const store = createStore(
     reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    composeEnhancers(applyMiddleware(thunk))
 )
 
 ReactDOM.render(

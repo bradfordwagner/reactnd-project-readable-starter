@@ -2,11 +2,10 @@ import React, {Component} from 'react'
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import Post from './Post'
-import API from '../api'
-import actions from '../redux/actions'
+import actions from '../App/actions'
 import {Dialog, RaisedButton} from "material-ui";
-import EditComment from "./EditComment";
-import Comment from "./Comment";
+import EditComment from "../Comment/EditComment";
+import Comment from "../Comment/Comment";
 
 class PostDetails extends Component {
     state = {
@@ -22,8 +21,8 @@ class PostDetails extends Component {
     }
 
     componentDidMount() {
-        API.getPost(this.props.postId).then(post => this.props.updatePost(post))
-        API.getCommentsForPost({id: this.props.postId}).then(comments => this.props.addComments(comments))
+        this.props.getPost(this.props.postId)
+        this.props.loadCommentsForPost(this.props.postId)
     }
 
     renderPost = () => this.props.post ? <div className="pad-bottom"><Post id={this.props.postId}/></div> : ""
