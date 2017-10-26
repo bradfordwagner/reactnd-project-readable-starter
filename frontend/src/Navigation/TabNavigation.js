@@ -2,9 +2,9 @@ import React, {Component} from 'react'
 import {Route, Switch, withRouter} from "react-router-dom";
 import {Tab, Tabs} from "material-ui";
 import AllPosts from "../Post/AllPosts";
-import Categories from '../Category/Categories'
 import CategoryDetails from "../Category/CategoryDetails";
 import PostDetails from "../Post/PostDetails";
+import {connect} from "react-redux";
 
 class TabNavigation extends Component {
     handleCallToRouter = (value) => {
@@ -21,15 +21,17 @@ class TabNavigation extends Component {
                         label="All Posts"
                         value="/">
                     </Tab>
-                    <Tab
-                        label="Categories"
-                        value="/categories">
-                    </Tab>
+                    {this.props.categoryNames.map(categoryName => (
+                        <Tab
+                            label={categoryName}
+                            value={`/${categoryName}`}>
+                        </Tab>
+                    ))}
+
                 </Tabs>
 
                 <Switch>
                     <Route path="/" exact component={AllPosts}/>
-                    <Route path="/categories" exact component={Categories}/>
                     <Route path="/:category" exact component={CategoryDetails}/>
                     <Route path="/:category/:postId" component={PostDetails}/>
                 </Switch>
@@ -38,4 +40,8 @@ class TabNavigation extends Component {
     }
 }
 
-export default withRouter(TabNavigation)
+function mapStateToProps({categories}) {
+    return {categoryNames: categories.names}
+}
+
+export default withRouter(connect(mapStateToProps, null)(TabNavigation))
