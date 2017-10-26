@@ -1,9 +1,13 @@
 import React, {Component} from 'react'
 import actions from '../App/actions'
 import {connect} from "react-redux";
-import {Card, CardActions, CardHeader, CardText, Dialog, RaisedButton} from "material-ui";
+import {Card, CardActions, CardHeader, CardText, Dialog, IconButton} from "material-ui";
 import EditComment from "./EditComment";
 import {DOWN_VOTE, UP_VOTE} from '../api/index'
+import ThumbUp from "../Icons/ThumbUp";
+import ThumbDown from "../Icons/ThumbDown";
+import Edit from "../Icons/Edit";
+import Delete from "../Icons/Delete";
 
 class Comment extends Component {
     state = {
@@ -34,10 +38,10 @@ class Comment extends Component {
             </CardText>
 
             <CardActions>
-                <RaisedButton label="Upvote" onClick={() => this.vote(UP_VOTE)}/>
-                <RaisedButton label="Downvote" onClick={() => this.vote(DOWN_VOTE)}/>
-                <RaisedButton label="Edit" onClick={this.handleOpen}/>
-                <RaisedButton label="Delete" onClick={this.deleteComment}/>
+                <IconButton onClick={() => this.vote(UP_VOTE)} tooltip="Upvote"><ThumbUp/></IconButton>
+                <IconButton onClick={() => this.vote(DOWN_VOTE)} tooltip="Downvote"><ThumbDown/></IconButton>
+                <IconButton onClick={this.handleOpen} tooltip="Edit Comment"><Edit/></IconButton>
+                <IconButton onClick={this.deleteComment} tooltip="Delete Comment"><Delete/></IconButton>
             </CardActions>
 
             <Dialog

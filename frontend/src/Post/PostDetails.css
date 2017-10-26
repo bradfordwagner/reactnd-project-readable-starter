@@ -1,0 +1,13 @@
+
+.small-section-padding {
+    padding: .25em !important;
+}
+
+.allow-in-same-line {
+    display: inline-block;
+}
+
+hr .small {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+}

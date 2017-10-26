@@ -1,12 +1,13 @@
 import React, {Component} from 'react'
 import actions from '../App/actions'
 import {DESCENDING, Sorter, SorterOption} from "../Sorting/Sorter";
-import {Dialog, RaisedButton} from "material-ui";
+import {Dialog, IconButton} from "material-ui";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import EditPost from './EditPost'
 import Post from './Post'
 import "./PostsWithSorter.css"
+import {Plus} from "../Icons/Plus";
 
 const DATE_FIELD = "timestamp"
 const UPVOTES_FIELD = "voteScore"
@@ -68,7 +69,7 @@ class PostsWithSorter extends Component {
                         <Sorter title={"Sort Posts"} options={this.state.sorterOptions} onChange={this.onSorterChange}/>
                     </div>
 
-                    <RaisedButton label="Add Post" onClick={this.handleOpen}/>
+                    <IconButton onClick={this.handleOpen} tooltip="Add Post"><Plus/></IconButton>
                     <Dialog
                         modal={false}
                         open={this.state.open}

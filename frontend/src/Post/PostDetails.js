@@ -3,9 +3,11 @@ import {connect} from "react-redux";
 import {Redirect, withRouter} from "react-router-dom";
 import Post from './Post'
 import actions from '../App/actions'
-import {CircularProgress, Dialog, RaisedButton} from "material-ui";
+import {CircularProgress, Dialog, IconButton} from "material-ui";
 import EditComment from "../Comment/EditComment";
 import Comment from "../Comment/Comment";
+import {Plus} from "../Icons/Plus";
+import "./PostDetails.css"
 
 class PostDetails extends Component {
     state = {
@@ -55,18 +57,16 @@ class PostDetails extends Component {
                 <Post id={this.props.postId}/>
             </div>
             <div className="pad-bottom">
-                <section className="section slide-down" style={{'animation-delay': this.calculateAnimationDelay(1)}}>
-                    <div className="container">
-                        <h2 className="subtitle">
+                <section className="section slide-down small-section-padding" style={{'animation-delay': this.calculateAnimationDelay(1)}}>
+                    <div>
+                        <h2 className="subtitle allow-in-same-line small">
                             Comments
                         </h2>
+                        <IconButton onClick={this.handleOpen} tooltip="Add Comment" tooltipPosition="top-center"><Plus/></IconButton>
                     </div>
                     <hr/>
                 </section>
 
-                <div className="space-posts slide-down" style={{'animation-delay': this.calculateAnimationDelay(1)}}>
-                    <RaisedButton label="Add" onClick={this.handleOpen}/>
-                </div>
                 <Dialog
                     modal={false}
                     open={this.state.open}

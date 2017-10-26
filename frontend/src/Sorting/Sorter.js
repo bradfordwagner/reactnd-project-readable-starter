@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Card, CardHeader, MenuItem, RaisedButton, SelectField} from "material-ui";
+import {Card, CardHeader, IconButton, MenuItem, SelectField} from "material-ui";
 import ArrowUp from "../Icons/ArrowUp";
 import ArrowDown from "../Icons/ArrowDown";
 
@@ -76,7 +76,7 @@ export class Sorter extends Component {
                     </SelectField>
                     <div>
                         <span>Order by: </span>
-                        <RaisedButton label="" icon={this.resolveArrow()} onClick={this.toggleOrderBy}/>
+                        <IconButton onClick={this.toggleOrderBy}>{this.resolveArrow()}</IconButton>
                     </div>
                 </div>
             </Card>
